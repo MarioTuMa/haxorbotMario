@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<style>
+.card {
+    width: 250px;
+    height: 325px;
+
+}
+</style>
+<body onload="myFunction()">
+<h1>BLACKJACK</h1>
+<br>
+<br>
+<br>
+<button id="deal" style="font-size:10px">Deal <br>Out</button>
+<button id="hit" style="font-size:10px">Hit me with<br> your best shot</button>
+<button id="hold" style="font-size:10px">You can take<br>the hit</button>
+
+<br>
+<h3>Your Cards</h3>
+<br>
+<span id="player"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</span>
+<br>
+AI holds on <select id="holdon">
+  <option value=15>15</option>
+  <option value=16>16</option>
+  <option value=17>17</option>
+
+</select>
+<h3>The Mario Bot's Cards</h3>
+<span id="ai"></span>
+<script>
+
+function myFunction() {
+  var headers = {
+
+    'Accept': 'application/json, text/plain, */*',
+
+
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7InRlYWNoZXIiOjAsImlkIjoyMjQ5MjR9fQ.odFK03uZET8pd4Y_pI_276ZBw36MIZMbs6Pio4P7td0',
+    'content-type': 'text/plain',
+
+    'Accept-Language': 'en-US,en;q=0.8,tr;q=0.6',
+
+};
+var dataString = '{"messages":[],"info":"{\"ct\":\"zySNBYCKHvYkKv324A71Jw==\",\"iv\":\"30b380ed26e2f44e6abd73f8de76acf7\",\"s\":\"b9ddfcb07be9a365\"}","_id":1065791,"original_sk":"foilFractionalCoef","sk":"foilFractionalCoef","sid":4358339,"yoursolution":"\\frac{1}{30}x^2+\\frac{5}{12}x+\\frac{5}{4}","ansType":1,"student_answers":["\\frac{1}{30}x^2+\\frac{5}{12}x+\\frac{5}{4}"],"version":45}';
+
+    $.ajax({
+      url: 'https://www.deltamath.com/new3/scripts/check_answer.php',
+      method: 'POST',
+      headers: headers,
+      body: dataString,
+      success: function(data){
+        console.log(data)
+      },
+      error: function(err){
+        console.log(err)
+      }
+
+});
+}
+
+
+</script>
+
+
+</body>
+</html>
